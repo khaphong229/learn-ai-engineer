@@ -14,16 +14,25 @@ Mình xây dựng lộ trình tutorial này để học từ lý thuyết tới 
 4. Tạo Demo thực tế cho các thành phần
 5. Song song build 1 cái Side Project mà sẽ update mỗi khi biết thêm kiến thức
 
-## Sẽ có **6 giai đoạn lớn** cùng 18 chủ đề bao gồm:
+## Sẽ có **6 giai đoạn lớn** cùng 18+ chủ đề bao gồm:
 
-1. **LLM Fundamentals**: Prompt + JSON + Streaming + Model
-2. **RAG**: Embeddings + Vector DB + Chunking
-3. **Orchestration**: Memory + Chains + Routing
-4. **Agents**: Tool Calling + ReAct
-5. **Production**: Evals + Observability + Cost + Security
-6. **Advanced**: Multi-modal + Fine-tuning + Local
+1. **LLM Fundamentals**: Context & Token + Hallucination + Prompt + JSON + Streaming + Model
+2. **RAG**: Embeddings + Vector DB + Chunking + Knowledge Graph
+3. **Orchestration & Agents**: Memory + Chains + Routing + Tool Calling + ReAct + MCP
+4. **Production**: Evals + Observability + Cost + Security
+5. **Advanced**: Multi-modal + Fine-tuning + Local
 
 ![Slide Roadmap](./frontend/public/slide-roadmap.png)
+
+## Tài liệu bổ sung
+
+Ngoài bộ tài liệu chính, project còn tích hợp nội dung từ các nguồn bên ngoài để bổ sung góc nhìn đa chiều:
+
+| Nguồn | Mô tả | File |
+|-------|--------|------|
+| **anh Đức (CPP AI)** | Bài chia sẻ "12 từ khóa AI nền tảng" — góc nhìn tư duy chiến lược về AI | [`sources/duc-cppai.md`](./sources/duc-cppai.md) |
+
+Các chủ đề bổ sung từ nguồn này: **Context Window & Tokens**, **Hallucination**, **Knowledge Graph**, **MCP (Model Context Protocol)**.
 
 ## Cách sử dụng bộ tài liệu
 
@@ -35,6 +44,17 @@ Vậy làm sao để bắt đầu với bộ tài liệu, source code của mìn
 4. **Hướng dẫn cách đọc source code** (chỉ đọc phần quan trọng)
 
 > **Mục tiêu tối thượng**: Phải có cái nhìn tổng thể, hiểu các phần là gì làm gì, tận dụng để Build được 1 cái dự án thực tế có tận dụng hết các kiến thức đã học.
+
+## Study Plan
+
+Project này có sẵn **Study Plan chi tiết** trong [`study-plans/`](./study-plans/) giúp bạn học có hệ thống:
+
+- 📅 **46 ngày học** (~9.5 tuần, 30 phút/ngày)
+- 📦 **6 modules** với lịch học từng ngày, flashcards, quiz, checkpoint
+- 🔁 **Spaced Repetition** tích hợp sẵn — không quên kiến thức cũ
+- 📖 **Kết hợp nhiều nguồn** — tài liệu chính + bài chia sẻ bên ngoài
+
+Xem chi tiết: [`study-plans/260224-1536-ai-engineer/plan.md`](./study-plans/260224-1536-ai-engineer/plan.md)
 
 ## Project Ideas
 
