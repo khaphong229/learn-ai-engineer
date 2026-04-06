@@ -1,0 +1,112 @@
+{
+    "updated_at": "2026-04-06T08:13:00+07:00",
+    "working_on": {
+        "feature": "Study: AI Application Engineer",
+        "task": "Study Plan v2 đã cập nhật — kết hợp nội dung anh Đức (CPP AI). Sẵn sàng tiếp tục từ Module 01, Ngày 0 (Warm-up 12 keywords)",
+        "status": "ready",
+        "files": [
+            "study-plans/260224-1536-ai-engineer/plan.md",
+            "study-plans/260224-1536-ai-engineer/module-01-llm-fundamentals.md",
+            "sources/duc-cppai.md",
+            "docs/01-llm-fundamentals/01-prompt-engineering.md"
+        ],
+        "blockers": [],
+        "notes": "Plan v2: 46 ngày (từ 42). Thêm 4 chủ đề từ anh Đức CPP AI: Context/Token, Hallucination, Knowledge Graph, MCP. Ngày 1 cũ → giữ nguyên tiến độ lý thuyết (Zero-shot, Few-shot, CoT, Role Prompting) nhưng đánh lại số ngày."
+    },
+    "study_context": {
+        "plan_folder": "study-plans/260224-1536-ai-engineer",
+        "plan_version": "v2",
+        "current_module": 1,
+        "current_day": 0,
+        "total_days": 46,
+        "total_modules": 6,
+        "daily_time_min": 30,
+        "next_study_date": "2026-04-07",
+        "next_topic": "Warm-up — Đọc lại bài anh Đức '12 từ khóa AI', vẽ mindmap tổng thể",
+        "completed_topics": [
+            "Ngày 1 cũ (lý thuyết): Zero-shot, Few-shot, CoT, Role Prompting → giờ là nội dung Ngày 2"
+        ],
+        "supplementary_source": "sources/duc-cppai.md"
+    },
+    "pending_tasks": [
+        {
+            "task": "Bắt đầu Ngày 0: Warm-up — Đọc bài anh Đức, vẽ mindmap 12 keywords",
+            "priority": "high",
+            "notes": "Bài overview tổng thể trước khi đi sâu. Đánh dấu keyword đã biết vs chưa biết"
+        },
+        {
+            "task": "Ngày 1: Context Window, Token & Hallucination",
+            "priority": "high",
+            "notes": "Kiến thức nền tảng mới bổ sung — phải hiểu trước khi viết prompt"
+        },
+        {
+            "task": "Ngày 2: Prompt Engineering (cũ Ngày 1) — Feynman Check + Thực hành",
+            "priority": "high",
+            "notes": "Đã hiểu lý thuyết 4 kỹ thuật, cần Feynman Check và thực hành"
+        },
+        {
+            "task": "Setup source code (pnpm i cho frontend + backend)",
+            "priority": "low",
+            "notes": "Cần OpenRouter API Key và TryChroma config cho demos"
+        }
+    ],
+    "recent_changes": [
+        {
+            "timestamp": "2026-04-06T08:13:00+07:00",
+            "type": "plan_update",
+            "description": "Study Plan v2 — Kết hợp nội dung 'anh Đức CPP AI' (12 từ khóa AI nền tảng)",
+            "details": [
+                "Thêm Ngày 0: Warm-up đọc 12 keywords tổng thể",
+                "Thêm Ngày 1: Context/Token/Hallucination (kiến thức nền tảng)",
+                "Thêm Knowledge Graph vào Module 02 (so sánh với RAG)",
+                "Thêm MCP (Model Context Protocol) vào Module 03",
+                "Thêm Fine-tuning vs PE vs RAG trade-off vào Module 05",
+                "Thêm Buffer/Catch-up day vào Module 06",
+                "Tổng: 42 → 46 ngày, 8.5 → 9.5 tuần"
+            ]
+        },
+        {
+            "timestamp": "2026-02-25T09:36:00+07:00",
+            "type": "study_session",
+            "description": "Deep Dive Ngày 1: Prompt Engineering — Học 4 kỹ thuật cốt lõi với ví dụ thực tế",
+            "details": [
+                "Zero-shot: hỏi trực tiếp, dùng cho task đơn giản",
+                "Few-shot: cho 2-5 ví dụ mẫu, dùng cho classification/format cụ thể",
+                "CoT: suy nghĩ từng bước, dùng cho logic phức tạp",
+                "Role Prompting: gán vai trò chuyên gia, dùng cho chuyên môn sâu"
+            ]
+        },
+        {
+            "timestamp": "2026-02-24T16:19:00+07:00",
+            "type": "study_plan",
+            "description": "Tạo Study Plan v1: 6 modules, 42 ngày, 30 phút/ngày",
+            "files": [
+                "study-plans/260224-1536-ai-engineer/plan.md",
+                "study-plans/260224-1536-ai-engineer/module-01-llm-fundamentals.md"
+            ]
+        }
+    ],
+    "errors_encountered": [],
+    "decisions_made": [
+        {
+            "decision": "Kết hợp bài anh Đức (CPP AI) vào study plan",
+            "reason": "4 chủ đề bổ sung quan trọng: Context/Token, Hallucination, Knowledge Graph, MCP. Anh Đức = Why/What, Khóa học = How to Build"
+        },
+        {
+            "decision": "Dùng Gemini Advanced hoặc Google AI Studio để thực hành",
+            "reason": "User đã có Google One AI Premium (Ultra), AI Studio miễn phí và có Playground"
+        },
+        {
+            "decision": "Ghép Orchestration + Agents thành 1 module",
+            "reason": "Chúng liên quan chặt chẽ (Memory → Chains → Tools → ReAct) và đều ngắn"
+        },
+        {
+            "decision": "~9.5 tuần thay vì 8.5 tuần (v2)",
+            "reason": "Thêm 4 ngày cho nội dung bổ sung từ anh Đức, vẫn giữ pace 30 phút/ngày"
+        },
+        {
+            "decision": "Học tuần tự từ giai đoạn 1→6",
+            "reason": "User chọn học từ đầu, không skip"
+        }
+    ]
+}

@@ -1,0 +1,147 @@
+{
+  "meta": {
+    "schema_version": "1.1.0",
+    "awf_version": "4.0.2",
+    "created_at": "2026-02-24T16:19:00+07:00",
+    "updated_at": "2026-02-24T16:19:00+07:00"
+  },
+  "project": {
+    "name": "learn-ai-engineer",
+    "type": "learning-platform",
+    "status": "active",
+    "description": "Lộ trình tutorial học AI Application Engineer — 6 giai đoạn, 19 bài học, kèm Frontend (Next.js) + Backend (NestJS) để học lý thuyết và thực hành demo.",
+    "repo": "lethai2597/learn-ai-engineer"
+  },
+  "tech_stack": {
+    "frontend": {
+      "framework": "Next.js 16",
+      "language": "TypeScript",
+      "ui_library": "Ant Design 6",
+      "state_management": "TanStack React Query 5",
+      "styling": "TailwindCSS 4",
+      "form": "React Hook Form + Zod 4",
+      "other": ["axios", "date-fns"]
+    },
+    "backend": {
+      "framework": "NestJS 11",
+      "language": "TypeScript",
+      "build_tool": "SWC",
+      "api_docs": "Swagger (@nestjs/swagger 11)",
+      "validation": "class-validator + class-transformer",
+      "security": ["helmet", "compression", "@nestjs/throttler"],
+      "ai_libraries": ["openai 6", "tiktoken", "@langchain/textsplitters", "chromadb 3"],
+      "schema_validation": "Zod 4"
+    },
+    "database": {
+      "type": "ChromaDB (Vector Database)",
+      "provider": "TryChroma Cloud",
+      "purpose": "Lưu trữ và truy xuất vectors cho RAG demos"
+    },
+    "ai": {
+      "llm_provider": "OpenRouter (wrapper cho OpenAI, Gemini, Deepseek, etc.)",
+      "embedding_model": "text-embedding-3-large (OpenAI)",
+      "vector_db": "ChromaDB"
+    }
+  },
+  "features": [
+    {
+      "name": "Overview & Roadmap",
+      "status": "implemented",
+      "description": "Trang tổng quan lộ trình 6 giai đoạn"
+    },
+    {
+      "name": "Lesson Content",
+      "status": "implemented",
+      "description": "19 bài học với lý thuyết chi tiết, code examples, bài tập"
+    },
+    {
+      "name": "Interactive Demos",
+      "status": "implemented",
+      "description": "Demo thực hành cho mỗi bài: Prompt Engineering, Embeddings, RAG, Agents..."
+    },
+    {
+      "name": "Project Ideas",
+      "status": "implemented",
+      "description": "4 ý tưởng dự án: Knowledge Base, Product Assistant, Meeting Notes, Study Coach"
+    },
+    {
+      "name": "Glossary",
+      "status": "implemented",
+      "description": "Thuật ngữ AI tra cứu"
+    },
+    {
+      "name": "Slide Roadmap",
+      "status": "implemented",
+      "description": "HTML slide tổng quan lộ trình (docs/slide/slide.html)"
+    }
+  ],
+  "knowledge_items": {
+    "patterns": [
+      "Strategy Pattern — chọn model/chunking/memory strategy dựa trên use case",
+      "Decorator Pattern — wrap LLM calls với logging/tracing",
+      "Observer Pattern — multiple services observe LLM events (LangSmith, Helicone)",
+      "Pipeline Pattern — data flows: Load → Split → Embed → Store → Search",
+      "Circuit Breaker — stop calling failing LLM APIs, auto-recover",
+      "ReAct Pattern — Reason → Act → Observe loop cho multi-step agents"
+    ],
+    "gotchas": [
+      "text-embedding-3-small không hỗ trợ tốt cross-lingual (Việt-Anh)",
+      "LangChain có thể phức tạp quá mức — native code thường dễ debug hơn",
+      "Chunk quá lớn (>1000 tokens) → nhiễu; quá nhỏ (<100 tokens) → mất ngữ cảnh",
+      "ReAct loop có thể bị stuck → luôn set MAX_ITERATIONS (5-10)",
+      "LLM output không deterministic → cần Evaluation pipeline tự động"
+    ],
+    "conventions": [
+      "Comment prefix BUSINESS = logic chính, FRONTEND = logic UI support",
+      "Source code viết raw (ít thư viện) để hiểu bản chất",
+      "Frontend chạy port 3000, Backend chạy port 4000",
+      "API docs tại http://localhost:4000/api-docs"
+    ]
+  },
+  "content_structure": {
+    "stages": [
+      {
+        "stage": 1,
+        "name": "LLM Fundamentals",
+        "lessons": ["Prompt Engineering", "Structured Output (JSON/Zod)", "Streaming (SSE)", "Model Comparison"],
+        "folder": "docs/01-llm-fundamentals"
+      },
+      {
+        "stage": 2,
+        "name": "RAG",
+        "lessons": ["Embeddings & Vector Space", "Vector Databases", "Chunking & Ingestion Strategy"],
+        "folder": "docs/02-rag"
+      },
+      {
+        "stage": 3,
+        "name": "Orchestration",
+        "lessons": ["Memory Management", "Chains & Routing"],
+        "folder": "docs/03-orchestration"
+      },
+      {
+        "stage": 4,
+        "name": "Agents",
+        "lessons": ["Tool/Function Calling", "ReAct Pattern"],
+        "folder": "docs/04-agents"
+      },
+      {
+        "stage": 5,
+        "name": "Production",
+        "lessons": ["Evaluation (Evals)", "Observability (Tracing)", "Cost Optimization", "Security & Safety", "Error Handling & Retry"],
+        "folder": "docs/05-production"
+      },
+      {
+        "stage": 6,
+        "name": "Advanced",
+        "lessons": ["Multi-modal AI", "Fine-tuning", "Local Models & Privacy"],
+        "folder": "docs/06-advanced"
+      }
+    ],
+    "project_ideas": [
+      "Personal Knowledge Base",
+      "Trợ lý sản phẩm (Product Assistant)",
+      "Meeting Notes & Action Items",
+      "Study Coach"
+    ]
+  }
+}
