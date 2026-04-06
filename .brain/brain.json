@@ -3,14 +3,22 @@
     "schema_version": "1.1.0",
     "awf_version": "4.0.2",
     "created_at": "2026-02-24T16:19:00+07:00",
-    "updated_at": "2026-02-24T16:19:00+07:00"
+    "updated_at": "2026-04-06T08:28:00+07:00"
   },
   "project": {
     "name": "learn-ai-engineer",
     "type": "learning-platform",
     "status": "active",
-    "description": "Lộ trình tutorial học AI Application Engineer — 6 giai đoạn, 19 bài học, kèm Frontend (Next.js) + Backend (NestJS) để học lý thuyết và thực hành demo.",
-    "repo": "lethai2597/learn-ai-engineer"
+    "description": "Lộ trình tutorial học AI Application Engineer — 6 giai đoạn, 19+ bài học, kèm Frontend (Next.js) + Backend (NestJS) để học lý thuyết và thực hành demo. Study Plan v2 kết hợp nội dung bổ sung từ anh Đức (CPP AI).",
+    "repo": "lethai2597/learn-ai-engineer",
+    "supplementary_sources": [
+      {
+        "name": "12 từ khóa AI nền tảng — anh Đức (CPP AI)",
+        "file": "sources/duc-cppai.md",
+        "topics_added": ["Context Window & Tokens", "Hallucination", "Knowledge Graph", "MCP"],
+        "integrated_at": "2026-04-06"
+      }
+    ]
   },
   "tech_stack": {
     "frontend": {
@@ -82,20 +90,27 @@
       "Observer Pattern — multiple services observe LLM events (LangSmith, Helicone)",
       "Pipeline Pattern — data flows: Load → Split → Embed → Store → Search",
       "Circuit Breaker — stop calling failing LLM APIs, auto-recover",
-      "ReAct Pattern — Reason → Act → Observe loop cho multi-step agents"
+      "ReAct Pattern — Reason → Act → Observe loop cho multi-step agents",
+      "Model Tiering — Flagship (đắt, thông minh) / Mid-tier (cân bằng) / Light (rẻ, nhanh) cho cost optimization",
+      "PE → RAG → Fine-tuning — escalation path: thử prompt trước, RAG nếu cần data riêng, fine-tune chỉ khi PE+RAG không đủ"
     ],
     "gotchas": [
       "text-embedding-3-small không hỗ trợ tốt cross-lingual (Việt-Anh)",
       "LangChain có thể phức tạp quá mức — native code thường dễ debug hơn",
       "Chunk quá lớn (>1000 tokens) → nhiễu; quá nhỏ (<100 tokens) → mất ngữ cảnh",
       "ReAct loop có thể bị stuck → luôn set MAX_ITERATIONS (5-10)",
-      "LLM output không deterministic → cần Evaluation pipeline tự động"
+      "LLM output không deterministic → cần Evaluation pipeline tự động",
+      "Hallucination — AI bịa thông tin (số liệu, URL, trích dẫn) vì cơ chế dự đoán token xác suất cao nhất",
+      "Context Window overflow — file quá dài vượt context length, AI chỉ đọc phần đầu, phần sau bị cắt",
+      "Tiếng Việt tốn token 2-3x so với tiếng Anh → ảnh hưởng chi phí và context limit",
+      "90% nhu cầu doanh nghiệp giải quyết được bằng PE + RAG, không cần fine-tune"
     ],
     "conventions": [
       "Comment prefix BUSINESS = logic chính, FRONTEND = logic UI support",
       "Source code viết raw (ít thư viện) để hiểu bản chất",
       "Frontend chạy port 3000, Backend chạy port 4000",
-      "API docs tại http://localhost:4000/api-docs"
+      "API docs tại http://localhost:4000/api-docs",
+      "Study Plan v2: Ngày bắt đầu từ 0 (warm-up), sources/ chứa tài liệu bổ sung"
     ]
   },
   "content_structure": {
@@ -103,38 +118,36 @@
       {
         "stage": 1,
         "name": "LLM Fundamentals",
-        "lessons": ["Prompt Engineering", "Structured Output (JSON/Zod)", "Streaming (SSE)", "Model Comparison"],
-        "folder": "docs/01-llm-fundamentals"
+        "lessons": ["Context Window & Tokens (🆕)", "Hallucination (🆕)", "Prompt Engineering", "Structured Output (JSON/Zod)", "Streaming (SSE)", "Model Comparison & Temperature"],
+        "folder": "docs/01-llm-fundamentals",
+        "supplementary": "sources/duc-cppai.md (Keyword #1-6)"
       },
       {
         "stage": 2,
-        "name": "RAG",
-        "lessons": ["Embeddings & Vector Space", "Vector Databases", "Chunking & Ingestion Strategy"],
-        "folder": "docs/02-rag"
+        "name": "RAG & Knowledge Graph",
+        "lessons": ["Embeddings & Vector Space", "Vector Databases", "Chunking & Ingestion Strategy", "Knowledge Graph (🆕)"],
+        "folder": "docs/02-rag",
+        "supplementary": "sources/duc-cppai.md (Keyword #9)"
       },
       {
         "stage": 3,
-        "name": "Orchestration",
-        "lessons": ["Memory Management", "Chains & Routing"],
-        "folder": "docs/03-orchestration"
+        "name": "Orchestration, Agents & MCP",
+        "lessons": ["Memory Management", "Chains & Routing", "Tool/Function Calling", "ReAct Pattern", "MCP - Model Context Protocol (🆕)"],
+        "folder": "docs/03-orchestration + docs/04-agents",
+        "supplementary": "sources/duc-cppai.md (Keyword #8, #10, #11)"
       },
       {
         "stage": 4,
-        "name": "Agents",
-        "lessons": ["Tool/Function Calling", "ReAct Pattern"],
-        "folder": "docs/04-agents"
-      },
-      {
-        "stage": 5,
         "name": "Production",
         "lessons": ["Evaluation (Evals)", "Observability (Tracing)", "Cost Optimization", "Security & Safety", "Error Handling & Retry"],
         "folder": "docs/05-production"
       },
       {
-        "stage": 6,
+        "stage": 5,
         "name": "Advanced",
-        "lessons": ["Multi-modal AI", "Fine-tuning", "Local Models & Privacy"],
-        "folder": "docs/06-advanced"
+        "lessons": ["Multi-modal AI", "Fine-tuning (+ PE vs RAG vs FT trade-off 🆕)", "Local Models & Privacy"],
+        "folder": "docs/06-advanced",
+        "supplementary": "sources/duc-cppai.md (Keyword #12)"
       }
     ],
     "project_ideas": [
