@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ngày 0 — Warm-up: 12 Từ Khóa AI Nền Tảng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* === RESET === */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 1rem; }
+
+    /* === CSS VARIABLES — DARK MODE (Default) === */
+    :root {
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --fs-h1: clamp(1.8rem, 4vw, 2.5rem);
+      --fs-h2: clamp(1.4rem, 3vw, 1.85rem);
+      --fs-h3: clamp(1.15rem, 2.5vw, 1.45rem);
+      --fs-h4: clamp(1rem, 2vw, 1.2rem);
+      --fs-body: clamp(0.95rem, 1.5vw, 1.05rem);
+      --fs-small: clamp(0.8rem, 1.2vw, 0.875rem);
+      --fs-code: clamp(0.82rem, 1.3vw, 0.92rem);
+
+      --lh-heading: 1.3;
+      --lh-body: 1.75;
+      --lh-code: 1.6;
+
+      --bg-primary: #0f1117;
+      --bg-secondary: #161822;
+      --bg-tertiary: #1c1f2e;
+      --bg-code: #1a1d2e;
+      --bg-code-inline: #252840;
+      --bg-table-alt: #181b28;
+      --bg-blockquote: #1a1e30;
+
+      --text-primary: #e2e4ed;
+      --text-secondary: #9ba1b5;
+      --text-heading: #f0f2f8;
+      --text-link: #6ea8fe;
+      --text-link-hover: #93c0ff;
+
+      --accent-primary: #6c63ff;
+      --accent-secondary: #38bdf8;
+      --accent-green: #4ade80;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+      --accent-orange: #fb923c;
+
+      --border-color: #2a2d3e;
+      --border-subtle: #222538;
+      --divider: #2a2d3e;
+
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.5);
+
+      --scrollbar-track: #161822;
+      --scrollbar-thumb: #2a2d3e;
+
+      --progress-bg: transparent;
+      --progress-fill: linear-gradient(90deg, #6c63ff, #38bdf8);
+
+      --toc-width: 270px;
+      --content-max: 860px;
+    }
+
+    /* === LIGHT MODE === */
+    [data-theme="light"] {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fc;
+      --bg-tertiary: #f1f3f8;
+      --bg-code: #f6f7fb;
+      --bg-code-inline: #eef0f7;
+      --bg-table-alt: #f8f9fc;
+      --bg-blockquote: #f0f4ff;
+
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --text-heading: #0f172a;
+      --text-link: #4f46e5;
+      --text-link-hover: #3730a3;
+
+      --accent-primary: #4f46e5;
+      --accent-secondary: #0ea5e9;
+
+      --border-color: #e2e8f0;
+      --border-subtle: #f1f5f9;
+      --divider: #e2e8f0;
+
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+
+      --scrollbar-track: #f1f5f9;
+      --scrollbar-thumb: #cbd5e1;
+
+      --progress-fill: linear-gradient(90deg, #4f46e5, #0ea5e9);
+    }
+
+    /* === SCROLLBAR === */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+    ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+
+    /* === PROGRESS BAR === */
+    .progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; z-index: 1000;
+      background: var(--progress-fill); width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    /* === LAYOUT === */
+    body {
+      font-family: var(--font-body);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      color: var(--text-primary);
+      background: var(--bg-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .content {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    @media (min-width: 1100px) {
+      .content { margin-left: calc(var(--toc-width) + 3rem); }
+    }
+
+    /* === TYPOGRAPHY === */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      color: var(--text-heading);
+      line-height: var(--lh-heading);
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: var(--fs-h1);
+      font-weight: 700;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 3px solid transparent;
+      border-image: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), transparent) 1;
+    }
+
+    h2 {
+      font-size: var(--fs-h2);
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      border-left: 4px solid var(--accent-primary);
+    }
+
+    h3 {
+      font-size: var(--fs-h3);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    h4 {
+      font-size: var(--fs-h4);
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p { margin-bottom: 1rem; }
+
+    a {
+      color: var(--text-link);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    a:hover { color: var(--text-link-hover); text-decoration: underline; }
+
+    strong { font-weight: 600; color: var(--text-heading); }
+    em { font-style: italic; }
+    del { opacity: 0.6; text-decoration: line-through; }
+
+    /* === HORIZONTAL RULE === */
+    hr {
+      border: none;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), transparent);
+      margin: 3rem 0;
+      opacity: 0.4;
+    }
+
+    /* === BLOCKQUOTE === */
+    blockquote {
+      background: var(--bg-blockquote);
+      border-left: 4px solid var(--accent-primary);
+      padding: 1rem 1.5rem;
+      margin: 1.25rem 0;
+      border-radius: 0 8px 8px 0;
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+    blockquote p { margin-bottom: 0.5rem; }
+    blockquote p:last-child { margin-bottom: 0; }
+    blockquote strong { color: var(--accent-secondary); }
+
+    /* === CODE === */
+    code.inline-code {
+      font-family: var(--font-mono);
+      font-size: var(--fs-code);
+      background: var(--bg-code-inline);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    pre {
+      background: var(--bg-code);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin: 1.25rem 0;
+      overflow-x: auto;
+      border-left: 3px solid var(--accent-primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    pre code {
+      font-family: var(--font-mono);
+      font-size: var(--fs-code);
+      line-height: var(--lh-code);
+      color: var(--text-primary);
+      background: transparent;
+      padding: 0;
+      border: none;
+      white-space: pre;
+    }
+
+    /* === TABLES === */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--fs-small);
+    }
+
+    th {
+      background: var(--bg-tertiary);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      text-align: left;
+      padding: 0.75rem 1rem;
+      color: var(--text-heading);
+      border-bottom: 2px solid var(--accent-primary);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td { background: var(--bg-table-alt); }
+    tr:hover td { background: var(--bg-tertiary); }
+
+    /* === LISTS === */
+    ul, ol {
+      margin: 0.75rem 0 1rem;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+      line-height: var(--lh-body);
+    }
+
+    ul > li::marker { color: var(--accent-primary); }
+    ol > li::marker { color: var(--accent-secondary); font-weight: 600; }
+
+    li > ul, li > ol { margin-top: 0.3rem; margin-bottom: 0.3rem; }
+
+    /* === TASK ITEMS (Checkboxes) === */
+    .task-list { list-style: none; padding-left: 0.25rem; }
+
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .task-item input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px; height: 18px; min-width: 18px;
+      border: 2px solid var(--border-color);
+      border-radius: 4px;
+      margin-top: 4px;
+      cursor: default;
+      position: relative;
+      background: transparent;
+      transition: all 0.2s;
+    }
+
+    .task-item input[type="checkbox"]:checked {
+      background: var(--accent-green);
+      border-color: var(--accent-green);
+    }
+
+    .task-item input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      top: -1px; left: 2px;
+      color: #0f1117;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* === TOC SIDEBAR === */
+    .toc {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      width: var(--toc-width);
+      max-height: calc(100vh - 2rem);
+      overflow-y: auto;
+      padding: 1.25rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      z-index: 100;
+      box-shadow: var(--shadow-md);
+      display: none;
+    }
+
+    @media (min-width: 1100px) {
+      .toc { display: block; }
+      .toc-toggle { display: none !important; }
+    }
+
+    .toc.active { display: block; }
+
+    .toc-title {
+      font-family: var(--font-heading);
+      font-size: var(--fs-small);
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+
+    .toc li {
+      margin-bottom: 0.15rem;
+    }
+
+    .toc a {
+      display: block;
+      padding: 0.3rem 0.5rem;
+      font-size: var(--fs-small);
+      color: var(--text-secondary);
+      border-radius: 6px;
+      transition: all 0.2s;
+      text-decoration: none;
+      line-height: 1.4;
+    }
+
+    .toc a:hover { color: var(--text-link); background: var(--bg-tertiary); }
+    .toc a.active { color: var(--accent-primary); background: var(--bg-tertiary); font-weight: 500; }
+
+    .toc .toc-h3 { padding-left: 1.25rem; font-size: calc(var(--fs-small) - 0.05rem); }
+
+    /* === TOC TOGGLE (Mobile) === */
+    .toc-toggle {
+      position: fixed;
+      bottom: 5rem;
+      left: 1rem;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      cursor: pointer;
+      z-index: 101;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+      transition: all 0.2s;
+    }
+    .toc-toggle:hover { background: var(--bg-tertiary); transform: scale(1.05); }
+
+    @media (min-width: 1100px) { .toc-toggle { display: none; } }
+
+    /* === THEME TOGGLE === */
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      cursor: pointer;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s;
+      font-size: 1.2rem;
+    }
+    .theme-toggle:hover { background: var(--bg-tertiary); transform: scale(1.1) rotate(15deg); }
+
+    /* === SCROLL TO TOP === */
+    .scroll-top {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: 700;
+      z-index: 99;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s;
+      box-shadow: var(--shadow-md);
+    }
+    .scroll-top.visible { opacity: 1; transform: translateY(0); }
+    .scroll-top:hover { background: var(--accent-secondary); transform: translateY(-2px); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .content { padding: 1.5rem 1rem 3rem; }
+      h1 { font-size: clamp(1.5rem, 5vw, 2rem); }
+      pre { padding: 1rem; font-size: clamp(0.78rem, 1.2vw, 0.88rem); }
+      .toc {
+        top: auto; bottom: 0; left: 0; right: 0;
+        width: 100%; max-height: 60vh;
+        border-radius: 16px 16px 0 0;
+        padding: 1.5rem;
+      }
+    }
+
+    /* === PRINT === */
+    @media print {
+      .toc, .toc-toggle, .theme-toggle, .scroll-top, .progress-bar { display: none !important; }
+      .content { margin: 0; max-width: 100%; }
+      body { color: #000; background: #fff; }
+      pre { border: 1px solid #ccc; }
+      a { color: #333; text-decoration: underline; }
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .content > article > * { animation: fadeIn 0.4s ease-out backwards; }
+    .content > article > *:nth-child(1) { animation-delay: 0.05s; }
+    .content > article > *:nth-child(2) { animation-delay: 0.08s; }
+    .content > article > *:nth-child(3) { animation-delay: 0.11s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Reading Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+
+  <!-- TOC Toggle (mobile) -->
+  <button class="toc-toggle" id="tocToggle" aria-label="Toggle table of contents">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+  </button>
+
+  <!-- Table of Contents -->
+  <nav class="toc" id="toc">
+    <h3 class="toc-title">Mục lục</h3>
+    <ul>
+      <li><a href="#mindmap-tong-the-12-keywords" class="toc-h2">🗺️ Mindmap Tổng Thể</a></li>
+      <li><a href="#deep-dive-tung-keyword" class="toc-h2">📚 Deep Dive Từng Keyword</a></li>
+      <li><a href="#1-context-context-length-max-output-token" class="toc-h3">1️⃣ Context / Context Length</a></li>
+      <li><a href="#2-token" class="toc-h3">2️⃣ Token</a></li>
+      <li><a href="#3-model" class="toc-h3">3️⃣ Model</a></li>
+      <li><a href="#4-hallucination" class="toc-h3">4️⃣ Hallucination</a></li>
+      <li><a href="#5-prompt-engineering-system-prompt" class="toc-h3">5️⃣ Prompt Engineering</a></li>
+      <li><a href="#6-temperature" class="toc-h3">6️⃣ Temperature</a></li>
+      <li><a href="#7-rag" class="toc-h3">7️⃣ RAG</a></li>
+      <li><a href="#8-memory" class="toc-h3">8️⃣ Memory</a></li>
+      <li><a href="#9-knowledge-graph" class="toc-h3">9️⃣ Knowledge Graph</a></li>
+      <li><a href="#10-ai-agent-multi-agent" class="toc-h3">🔟 AI Agent / Multi-Agent</a></li>
+      <li><a href="#11-mcp" class="toc-h3">1️⃣1️⃣ MCP</a></li>
+      <li><a href="#12-fine-tuning-vs-pe-vs-rag" class="toc-h3">1️⃣2️⃣ Fine-tuning vs PE vs RAG</a></li>
+      <li><a href="#bai-thuc-hanh" class="toc-h2">🧪 Bài Thực Hành</a></li>
+      <li><a href="#bai-1-cam-nhan-token" class="toc-h3">Bài 1: Cảm nhận Token</a></li>
+      <li><a href="#bai-2-so-sanh-temperature" class="toc-h3">Bài 2: So sánh Temperature</a></li>
+      <li><a href="#bai-3-prompt-engineering-battle" class="toc-h3">Bài 3: PE Battle</a></li>
+      <li><a href="#bai-4-bat-qua-tang-hallucination" class="toc-h3">Bài 4: Bắt Hallucination</a></li>
+      <li><a href="#bai-5-tu-danh-gia" class="toc-h3">Bài 5: Tự Đánh Giá</a></li>
+      <li><a href="#ngay-0-checklist-hoan-thanh" class="toc-h2">✅ Checklist Hoàn Thành</a></li>
+      <li><a href="#ngay-mai" class="toc-h2">⏭️ Ngày Mai</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="content">
+    <article>
+
+      <h1 id="ngay-0-warmup-12-tu-khoa-ai-nen-tang">📖 Ngày 0 — Warm-up: 12 Từ Khóa AI Nền Tảng</h1>
+
+      <blockquote>
+        <p><strong>Nguồn:</strong> Bài chia sẻ "12 từ khóa AI" — anh Đức (CPP AI)</p>
+        <p><strong>Mục tiêu:</strong> Hiểu toàn cảnh 12 keyword trước khi đào sâu từng phần</p>
+        <p><strong>Thời lượng:</strong> ~45-60 phút (hôm nay đặc biệt dài hơn 30 phút vì là bài overview)</p>
+        <p><strong>Cách học:</strong> Đọc → Hiểu bản chất → Liên hệ thực tế → Thực hành ngay</p>
+      </blockquote>
+
+      <hr>
+
+      <h2 id="mindmap-tong-the-12-keywords">🗺️ Mindmap Tổng Thể: 12 Keywords</h2>
+
+<pre><code>                          🧠 AI APPLICATION ENGINEER
+                                    │
+            ┌───────────────────────┼───────────────────────┐
+            │                       │                       │
+     ⚙️ NỀN TẢNG            🔧 KỸ THUẬT              🏗️ HỆ THỐNG
+     (Hiểu AI là gì)       (Dùng AI thế nào)        (Xây sản phẩm AI)
+            │                       │                       │
+     ┌──────┼──────┐         ┌──────┼──────┐         ┌──────┼──────┐
+     │      │      │         │      │      │         │      │      │
+   Token  Model  Temp     Prompt   RAG  Fine-tune  Agent  Memory  MCP
+   (1,2)   (3)    (6)     Eng(5)   (7)    (12)     (10)    (8)   (11)
+     │                       │                       │
+     └──── Hallucination ────┘                Knowledge Graph
+            (4)                                  (9)</code></pre>
+
+      <h3 id="cach-doc-mindmap">Cách đọc Mindmap:</h3>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>Nhóm</th><th>Keyword</th><th>Tại sao quan trọng</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>⚙️ <strong>Nền tảng</strong></td><td>Context/Token (1,2), Model (3), Hallucination (4), Temperature (6)</td><td>Hiểu AI hoạt động ra sao → dùng đúng, tránh sai</td></tr>
+            <tr><td>🔧 <strong>Kỹ thuật</strong></td><td>Prompt Engineering (5), RAG (7), Fine-tuning (12)</td><td>3 cách "dạy" AI → chọn đúng cách cho đúng bài toán</td></tr>
+            <tr><td>🏗️ <strong>Hệ thống</strong></td><td>Memory (8), Knowledge Graph (9), Agent (10), MCP (11)</td><td>Xây AI thành sản phẩm thực sự → tự động hóa business</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <blockquote>
+        <p><strong>Quy luật leo thang:</strong> Prompt Engineering → RAG → Fine-tuning. Luôn thử cách rẻ nhất trước!</p>
+      </blockquote>
+
+      <hr>
+
+      <h2 id="deep-dive-tung-keyword">📚 Deep Dive Từng Keyword</h2>
+
+      <h3 id="1-context-context-length-max-output-token">1️⃣ Context / Context Length / Max Output Token</h3>
+
+      <p><strong>Bản chất:</strong> Context = "bộ nhớ tạm" của AI trong MỘT cuộc hội thoại.</p>
+
+      <p>Hãy tưởng tượng AI như một người đọc sách, nhưng chỉ có một bàn nhỏ. Tất cả giấy tờ (system prompt, tin nhắn cũ, file đính kèm, kết quả search) đều phải đặt trên bàn đó. Bàn có kích thước giới hạn = <strong>Context Window</strong>.</p>
+
+<pre><code>┌─────────────── Context Window (VD: 200K tokens) ───────────────┐
+│                                                                  │
+│  [System Prompt]  +  [Chat History]  +  [Files]  +  [Search]    │
+│      ~500 tok          ~2K tok          ~50K tok     ~5K tok     │
+│                                                                  │
+│  Tổng đã dùng: ~57.5K / 200K = 28.75%                          │
+│  Còn trống: ~142.5K tokens                                      │
+│                                                                  │
+└──────────────────────────────────────────────────────────────────┘
+
+Max Output Token = giới hạn câu trả lời
+├── Model đọc được 200K (input) nhưng chỉ viết được 16K (output)
+└── VD: Yêu cầu viết sách 100 trang → AI bị cắt giữa chừng</code></pre>
+
+      <p><strong>So sánh các model phổ biến (2026):</strong></p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>Model</th><th>Context Window</th><th>Max Output</th><th>Ghi chú</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Gemini 2.5 Pro</td><td>1M tokens</td><td>65K</td><td>Context lớn nhất hiện tại</td></tr>
+            <tr><td>Claude Sonnet 4</td><td>200K tokens</td><td>16K</td><td>Cân bằng tốt</td></tr>
+            <tr><td>GPT-4o</td><td>128K tokens</td><td>16K</td><td>Phổ biến nhất</td></tr>
+            <tr><td>Claude Haiku</td><td>200K tokens</td><td>4K</td><td>Rẻ nhưng output ngắn</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>❌ Sai lầm thường gặp:</strong></p>
+      <ul>
+        <li>Nhét cả file PDF 200 trang → tràn context → AI chỉ đọc phần đầu, "quên" phần cuối</li>
+        <li>Không biết max output → viết dài bị cắt → tưởng AI lỗi</li>
+      </ul>
+
+      <p><strong>✅ Cách làm đúng:</strong></p>
+      <ul>
+        <li>Chia nhỏ file, gửi từng phần</li>
+        <li>Chọn model có context đủ lớn cho task</li>
+        <li>Dùng RAG (keyword #7) thay vì nhét hết vào context</li>
+        <li>Tăng max output khi cần AI viết dài</li>
+      </ul>
+
+      <hr>
+
+      <h3 id="2-token">2️⃣ Token</h3>
+
+      <p><strong>Bản chất:</strong> Token = đơn vị nhỏ nhất AI xử lý. <strong>Không phải từ, không phải ký tự.</strong></p>
+
+<pre><code>Tiếng Anh: "Hello world" → 2 tokens  (1 token ≈ 0.75 từ ≈ 4 ký tự)
+Tiếng Việt: "Xin chào"   → 4 tokens! (dấu + ký tự đặc biệt → tốn 2-3x)
+
+📊 So sánh chi phí thực tế:
+┌────────────────────────────────────────────────────┐
+│  English prompt (100 từ)  ≈  130 tokens ≈ $0.001  │
+│  Vietnamese prompt (100 từ) ≈ 300 tokens ≈ $0.003 │
+│  → Tiếng Việt TỐN GẤP 2-3 LẦN!                   │
+└────────────────────────────────────────────────────┘</code></pre>
+
+      <p><strong>Tại sao phải biết?</strong></p>
+      <ol>
+        <li><strong>Chi phí</strong> = (Input tokens + Output tokens) × Giá/token</li>
+        <li><strong>Context limit</strong> đo bằng token, không phải chữ</li>
+        <li><strong>Tối ưu prompt</strong> = tiết kiệm tiền + fit vào context</li>
+      </ol>
+
+      <p><strong>❌ Sai lầm:</strong> Gửi prompt 5000 từ cho câu hỏi đơn giản → tốn gấp 10x, kết quả không khá hơn</p>
+      <p><strong>✅ Cách đúng:</strong> Prompt ngắn gọn, chỉ đưa context cần thiết. Task đơn giản → model rẻ. Task phức tạp → model đắt.</p>
+
+      <hr>
+
+      <h3 id="3-model">3️⃣ Model — Không Phải AI Nào Cũng Giống Nhau</h3>
+
+      <p><strong>Bản chất:</strong> Có NHIỀU loại model AI, phục vụ các mục đích khác nhau.</p>
+
+<pre><code>🧠 Phân loại theo NĂNG LỰC:
+┌──────────────────┬──────────────────────────┬──────────────────────────┐
+│ Loại             │ Làm gì                   │ Ví dụ                    │
+├──────────────────┼──────────────────────────┼──────────────────────────┤
+│ LLM              │ Viết, phân tích, code    │ Claude, GPT, Gemini      │
+│ Image Gen        │ Tạo ảnh từ mô tả        │ Midjourney, DALL-E, Flux │
+│ Video Gen        │ Tạo video               │ Sora, Kling, Veo         │
+│ TTS              │ Văn bản → Giọng nói     │ ElevenLabs, Azure TTS    │
+│ STT              │ Giọng nói → Văn bản     │ Whisper, Deepgram        │
+│ Embedding        │ Văn bản → Vector số     │ text-embedding-3         │
+│ Multimodal       │ Xử lý text+ảnh+audio    │ GPT-4o, Gemini           │
+└──────────────────┴──────────────────────────┴──────────────────────────┘
+
+💰 Phân loại theo KHẢ NĂNG &amp; CHI PHÍ (cùng 1 hãng):
+┌────────────┬──────────────────────┬──────────────────────────────────┐
+│ Tầng       │ Đặc điểm             │ Ví dụ                            │
+├────────────┼──────────────────────┼──────────────────────────────────┤
+│ Flagship   │ Thông minh nhất,     │ Claude Opus, Gemini Ultra        │
+│            │ ĐẮT nhất, CHẬM nhất │                                  │
+│ Mid-tier   │ CÂN BẰNG chất lượng │ Claude Sonnet, GPT-4o-mini       │
+│            │ và chi phí           │                                  │
+│ Light      │ NHANH nhất, RẺ nhất  │ Claude Haiku, Gemini Flash       │
+└────────────┴──────────────────────┴──────────────────────────────────┘</code></pre>
+
+      <p><strong>Chiến lược Model Tiering (tiết kiệm 80-90% chi phí):</strong></p>
+      <ul>
+        <li>Task đơn giản (phân loại email, format text) → <strong>Light</strong> (Haiku/Flash)</li>
+        <li>Task trung bình (viết email, tóm tắt) → <strong>Mid-tier</strong> (Sonnet)</li>
+        <li>Task phức tạp (phân tích chiến lược, code khó) → <strong>Flagship</strong> (Opus)</li>
+      </ul>
+
+      <hr>
+
+      <h3 id="4-hallucination">4️⃣ Hallucination — "Ảo Giác" Của AI</h3>
+
+      <p><strong>Bản chất:</strong> AI <strong>bịa thông tin</strong> nghe rất thuyết phục nhưng SAI HOÀN TOÀN.</p>
+
+      <p>AI không "cố ý nói dối". Cơ chế LLM = dự đoán token tiếp theo có xác suất cao nhất. Khi thiếu dữ liệu → vẫn tạo câu trôi chảy, nhưng <strong>nội dung bịa</strong>.</p>
+
+<pre><code>⚠️ Các dạng hallucination phổ biến:
+├── 📊 Bịa số liệu thống kê ("Theo khảo sát 2025 của McKinsey..." → KHÔNG TỒN TẠI)
+├── 🔗 Bịa link URL ("Xem tại https://example.com/report" → 404)
+├── 📚 Bịa tên sách/tác giả ("Trong cuốn 'AI Revolution' của Dr.Smith" → KHÔNG CÓ)
+├── 📝 Bịa trích dẫn nghiên cứu
+└── 💪 Tự tin khẳng định điều sai là đúng (giọng rất chắc chắn!)</code></pre>
+
+      <p><strong>Cách giảm Hallucination:</strong></p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>Phương pháp</th><th>Hiệu quả</th><th>Cách làm</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Yêu cầu trích nguồn</td><td>⭐⭐⭐</td><td>Thêm "Trích dẫn nguồn cho mọi thông tin" vào prompt</td></tr>
+            <tr><td>Bật Web Search</td><td>⭐⭐⭐⭐</td><td>AI có dữ liệu thực thay vì "tự nghĩ"</td></tr>
+            <tr><td>Dùng RAG</td><td>⭐⭐⭐⭐⭐</td><td>AI trả lời từ DỮ LIỆU CỦA BẠN</td></tr>
+            <tr><td>System prompt discipline</td><td>⭐⭐⭐</td><td>"Nếu không chắc chắn, nói KHÔNG BIẾT"</td></tr>
+            <tr><td>Cross-check</td><td>⭐⭐⭐⭐</td><td>Kiểm chứng thông tin quan trọng trước khi dùng</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <blockquote>
+        <p><strong>Nguyên tắc vàng:</strong> AI là "intern giỏi" — viết nhanh, viết hay, nhưng LUÔN cần review!</p>
+      </blockquote>
+
+      <hr>
+
+      <h3 id="5-prompt-engineering-system-prompt">5️⃣ Prompt Engineering / System Prompt</h3>
+
+      <p><strong>Bản chất:</strong> Prompt = câu lệnh gửi AI. <strong>Prompt Engineering = nghệ thuật viết prompt để AI hiểu ĐÚNG ý bạn.</strong></p>
+
+<pre><code>System Prompt (ẩn, dev đặt)        User Prompt (bạn gõ)
+┌──────────────────────┐            ┌──────────────────────┐
+│ "Bạn là chuyên gia   │            │ "Viết email follow-  │
+│  marketing B2B.      │     +      │  up cho CEO công ty  │
+│  Giọng chuyên nghiệp │            │  sản xuất, sau demo" │
+│  nhưng thân thiện."  │            │                      │
+└──────────────────────┘            └──────────────────────┘
+         ↓↓↓                                 ↓↓↓
+         ──────────── AI xử lý ────────────
+                        ↓
+              Kết quả chất lượng cao ✅</code></pre>
+
+      <p><strong>5 kỹ thuật prompt cơ bản:</strong></p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Kỹ thuật</th><th>Ý nghĩa</th><th>Khi nào dùng</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><strong>Role Prompting</strong></td><td>Giao vai trò cụ thể</td><td>Cần chuyên môn sâu</td></tr>
+            <tr><td>2</td><td><strong>Few-shot</strong></td><td>Cho 2-5 ví dụ mẫu</td><td>Cần output đúng format</td></tr>
+            <tr><td>3</td><td><strong>Chain-of-Thought</strong></td><td>Yêu cầu suy luận từng bước</td><td>Task logic phức tạp</td></tr>
+            <tr><td>4</td><td><strong>Output Format</strong></td><td>Chỉ định format (JSON, bảng...)</td><td>Cần structured output</td></tr>
+            <tr><td>5</td><td><strong>Constraints</strong></td><td>Đặt ràng buộc rõ ràng</td><td>Giới hạn scope, tránh lan man</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>So sánh prompt tệ vs prompt tốt:</strong></p>
+
+<pre><code>❌ TỆ:  "Viết cho tôi một email"
+   → AI viết email chung chung, sáo rỗng, vứt sọt rác
+
+✅ TỐT: "Bạn là chuyên gia marketing B2B.
+         Viết email follow-up cho CEO công ty sản xuất,
+         sau buổi demo sản phẩm AI automation.
+         Giọng: chuyên nghiệp nhưng thân thiện.
+         Dưới 150 từ. CTA: đặt lịch demo lần 2.
+         Tránh từ spam."
+   → AI viết email dùng được ngay!</code></pre>
+
+      <hr>
+
+      <h3 id="6-temperature">6️⃣ Temperature</h3>
+
+      <p><strong>Bản chất:</strong> Temperature = "nút vặn sáng tạo" của AI. Giá trị 0 → 1 (hoặc 2).</p>
+
+<pre><code>Temperature thấp (0-0.3)          Temperature cao (0.8-1.0+)
+┌─────────────────────┐           ┌─────────────────────┐
+│ 🎯 Chính xác        │           │ 🎨 Sáng tạo         │
+│ 📊 Nhất quán        │           │ 🎲 Đa dạng          │
+│ 🔁 Mỗi lần giống nhau│          │ 🎭 Mỗi lần khác     │
+│                     │           │                     │
+│ Dùng cho:           │           │ Dùng cho:           │
+│ • Code              │           │ • Brainstorm        │
+│ • Phân tích dữ liệu│           │ • Viết sáng tạo     │
+│ • Dịch thuật        │           │ • Đặt tên brand     │
+│ • Hợp đồng pháp lý │           │ • Viết content      │
+└─────────────────────┘           └─────────────────────┘
+         0                  0.5                  1.0
+         ├────────────┼────────────┤
+              Cân bằng (0.4-0.7)
+              • Email, tóm tắt
+              • Chatbot hỗ trợ</code></pre>
+
+      <p><strong>❌ Sai lầm:</strong> Dùng temperature cao (0.9) viết hợp đồng pháp lý → mỗi lần một kiểu, bịa thêm điều khoản!</p>
+      <p><strong>✅ Đúng:</strong> Temperature thấp cho chính xác. Tăng temperature khi cần sáng tạo.</p>
+
+      <hr>
+
+      <h3 id="7-rag">7️⃣ RAG (Retrieval-Augmented Generation)</h3>
+
+      <p><strong>Bản chất:</strong> RAG = "cho AI tra cứu trước khi trả lời", thay vì chỉ dùng kiến thức cũ trong model.</p>
+
+<pre><code>KHÔNG CÓ RAG:
+User hỏi → AI dùng kiến thức cũ → ❌ Bịa (hallucination)
+
+CÓ RAG:
+User hỏi → 🔍 Tìm trong kho dữ liệu → Đưa kết quả vào context → AI trả lời từ DỮ LIỆU THẬT ✅
+
+┌─────────────────────────────────────────────────────────────┐
+│                    QUY TRÌNH RAG                            │
+│                                                             │
+│  📝 Câu hỏi                                                │
+│     ↓                                                       │
+│  🔍 Tìm kiếm (Vector DB, Database, Files, Web)             │
+│     ↓                                                       │
+│  📄 Kết quả tìm được (top 3-5 đoạn liên quan nhất)         │
+│     ↓                                                       │
+│  📦 Đưa vào Context: "Dựa trên tài liệu sau: {kết quả}"   │
+│     ↓                                                       │
+│  🤖 AI trả lời DỰA TRÊN DỮ LIỆU THẬT                     │
+│     ↓                                                       │
+│  ✅ Kết quả chính xác, có nguồn, giảm hallucination        │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+
+      <p><strong>Tại sao cần RAG?</strong></p>
+      <ul>
+        <li>LLM có <strong>knowledge cutoff</strong> (ngày cắt kiến thức) → không biết tin mới</li>
+        <li>Dữ liệu nội bộ công ty → AI không thể biết nếu không cung cấp</li>
+        <li>Giảm hallucination gần = 0 trong domain cụ thể</li>
+      </ul>
+
+      <hr>
+
+      <h3 id="8-memory">8️⃣ Memory</h3>
+
+      <p><strong>Bản chất:</strong> Memory = khả năng AI <strong>nhớ thông tin giữa các cuộc hội thoại</strong>.</p>
+
+<pre><code>KHÔNG CÓ MEMORY:
+Chat mới → AI quên hết → Phải giới thiệu lại → Lặp đi lặp lại 😩
+
+CÓ MEMORY:
+Chat mới → AI nhớ bạn là ai → Trả lời sát context → Càng dùng càng hiểu bạn 🎯
+
+📊 3 cấp độ Memory:
+┌──────────────────────┬─────────────────────────────────────────┐
+│ Conversation Memory  │ Nhớ trong CÙNG cuộc hội thoại           │
+│ (ngắn hạn)          │ VD: "Như tôi nói ở trên..." → AI hiểu   │
+├──────────────────────┼─────────────────────────────────────────┤
+│ Short-term Memory    │ Nhớ qua VÀI phiên                       │
+│ (trung hạn)         │ VD: "Hôm qua bạn hỏi về X..."          │
+├──────────────────────┼─────────────────────────────────────────┤
+│ Long-term Memory     │ Nhớ LÂU DÀI — sở thích, thói quen      │
+│ (dài hạn)           │ VD: "Bạn thích code Python, dùng VSCode"│
+└──────────────────────┴─────────────────────────────────────────┘</code></pre>
+
+      <blockquote>
+        <p><strong>Liên hệ thực tế:</strong> <code class="inline-code">.brain/</code> folder trong project này chính là <strong>Memory</strong> cho Antigravity! <code class="inline-code">session.json</code> = short-term, <code class="inline-code">brain.json</code> = long-term.</p>
+      </blockquote>
+
+      <hr>
+
+      <h3 id="9-knowledge-graph">9️⃣ Knowledge Graph</h3>
+
+      <p><strong>Bản chất:</strong> Knowledge Graph = tổ chức thông tin thành <strong>mạng lưới quan hệ</strong>, thay vì văn bản phẳng.</p>
+
+<pre><code>📄 Văn bản phẳng (RAG truyền thống):
+"Đức là CEO CPPAI. CPPAI có sản phẩm OpenClaw. OpenClaw là multi-agent framework."
+→ AI tìm từng câu riêng lẻ, KHÔNG thấy bức tranh tổng thể
+
+🕸️ Knowledge Graph:
+   Đức ──[là CEO của]──→ CPPAI
+                            │
+                       [có sản phẩm]
+                            │
+                            ↓
+                        OpenClaw ──[là]──→ Multi-agent Framework
+→ AI HIỂU MỐI QUAN HỆ → suy luận tốt hơn
+
+VD câu hỏi: "Ai trong team biết React và đang rảnh?"
+RAG: ❌ Tìm không ra (thông tin rải rác nhiều file)
+KG:  ✅ Duyệt graph: Nhân viên → Kỹ năng → Lịch trình → Trả lời ngay</code></pre>
+
+      <p><strong>So sánh RAG vs Knowledge Graph:</strong></p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>Tiêu chí</th><th>RAG</th><th>Knowledge Graph</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Dữ liệu</td><td>Văn bản chunks</td><td>Entities + Relationships</td></tr>
+            <tr><td>Tìm kiếm</td><td>Semantic search</td><td>Graph traversal</td></tr>
+            <tr><td>Điểm mạnh</td><td>Nhanh, dễ setup</td><td>Suy luận quan hệ phức tạp</td></tr>
+            <tr><td>Điểm yếu</td><td>Không thấy quan hệ</td><td>Setup phức tạp hơn</td></tr>
+            <tr><td>Khi nào dùng</td><td>FAQ, tài liệu</td><td>Org chart, sản phẩm liên quan</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr>
+
+      <h3 id="10-ai-agent-multi-agent">🔟 AI Agent / Multi-Agent</h3>
+
+      <p><strong>Bản chất:</strong> Agent = AI có khả năng <strong>HÀNH ĐỘNG</strong>, không chỉ trả lời.</p>
+
+<pre><code>CHATBOT thông thường:          AI AGENT:
+User hỏi → AI trả lời         User ra lệnh → AI tự làm
+     (chỉ NÓI)                      (NÓI + LÀM)
+
+Ví dụ: "Đặt lịch họp 2pm thứ 3"
+Chatbot: "Bạn nên mở Google Calendar..." → BẠN tự làm 😅
+Agent:   *Tự mở Calendar, tạo event, mời người* → XONG! ✅
+
+🔄 Agent Loop (ReAct Pattern):
+┌──────────────────────────────────────────┐
+│  1. REASON  — Suy nghĩ: cần làm gì?     │
+│  2. ACT     — Hành động: gọi API, đọc DB │
+│  3. OBSERVE — Quan sát: kết quả ra sao?  │
+│  4. Lặp lại cho đến khi xong             │
+└──────────────────────────────────────────┘
+
+🤝 Multi-Agent = Nhiều agent phối hợp:
+Agent A (Phân tích) → Agent B (Viết) → Agent C (Review)</code></pre>
+
+      <p><strong>Liên hệ thực tế:</strong> Antigravity (AI bạn đang dùng) chính là một <strong>AI Agent</strong>! Nó có thể:</p>
+      <ul>
+        <li>Đọc/ghi file (tool: <code class="inline-code">view_file</code>, <code class="inline-code">write_to_file</code>)</li>
+        <li>Chạy command (tool: <code class="inline-code">run_command</code>)</li>
+        <li>Tìm kiếm web (tool: <code class="inline-code">search_web</code>)</li>
+        <li>Tương tác browser (tool: <code class="inline-code">browser_subagent</code>)</li>
+      </ul>
+
+      <hr>
+
+      <h3 id="11-mcp">1️⃣1️⃣ MCP (Model Context Protocol)</h3>
+
+      <p><strong>Bản chất:</strong> MCP = <strong>chuẩn kết nối</strong> giữa AI và các tool/dữ liệu bên ngoài. Giống <strong>USB-C</strong> cho thế giới AI.</p>
+
+<pre><code>TRƯỚC MCP (mỗi tool 1 integration riêng):
+AI ──[custom code]──→ Calendar
+AI ──[custom code]──→ Gmail
+AI ──[custom code]──→ Slack
+AI ──[custom code]──→ Database
+→ Mỗi lần thêm tool = viết code mới từ đầu 😩
+
+SAU MCP (1 chuẩn chung):
+AI ──[MCP]──→ Calendar MCP Server
+AI ──[MCP]──→ Gmail MCP Server
+AI ──[MCP]──→ Slack MCP Server
+AI ──[MCP]──→ Database MCP Server
+→ Thêm tool mới = cắm thêm 1 server, không viết lại gì 🎉</code></pre>
+
+      <p><strong>Liên hệ thực tế:</strong> Bạn đang dùng MCP ngay lúc này!</p>
+      <ul>
+        <li><code class="inline-code">NotebookLM MCP</code> → AI kết nối NotebookLM</li>
+        <li><code class="inline-code">Figma MCP</code> → AI đọc design từ Figma</li>
+        <li><code class="inline-code">StitchMCP</code> → AI tạo UI</li>
+      </ul>
+
+      <hr>
+
+      <h3 id="12-fine-tuning-vs-pe-vs-rag">1️⃣2️⃣ Fine-tuning vs Prompt Engineering vs RAG</h3>
+
+      <p><strong>Bản chất:</strong> 3 cách "dạy" AI, khác nhau hoàn toàn về mục đích và chi phí.</p>
+
+<pre><code>📊 QUY LUẬT LEO THANG (Escalation Path):
+
+  Thử PE trước ($) → Nếu chưa đủ → Thêm RAG ($$) → Nếu vẫn chưa đủ → Fine-tune ($$$)
+
+┌──────────────────┬──────────────────┬──────────────────┐
+│ Prompt           │ RAG              │ Fine-tuning      │
+│ Engineering      │                  │                  │
+├──────────────────┼──────────────────┼──────────────────┤
+│ 💰 Thấp nhất    │ 💰💰 Trung bình  │ 💰💰💰 Cao nhất │
+│ ⏱️ Vài phút     │ ⏱️ Vài ngày      │ ⏱️ Vài tuần     │
+│ 📝 Viết prompt  │ 📚 Cung cấp data │ 🔧 Huấn luyện   │
+│    thông minh hơn│    bên ngoài     │    lại model     │
+├──────────────────┼──────────────────┼──────────────────┤
+│ ✅ 70% use case  │ ✅ 20% use case  │ ✅ 10% use case  │
+│ VD: Email, tóm   │ VD: FAQ nội bộ,  │ VD: Giọng văn   │
+│ tắt, phân tích   │ catalog sản phẩm │ brand riêng,     │
+│                  │                  │ domain siêu chuyên│
+└──────────────────┴──────────────────┴──────────────────┘</code></pre>
+
+      <blockquote>
+        <p><strong>Số liệu thực tế:</strong> 90% nhu cầu doanh nghiệp giải quyết được bằng PE + RAG. Đừng vội fine-tune!</p>
+      </blockquote>
+
+      <hr>
+
+      <h2 id="bai-thuc-hanh">🧪 BÀI THỰC HÀNH (Hands-on)</h2>
+
+      <blockquote>
+        <p><strong>Công cụ:</strong> Mở <a href="https://aistudio.google.com" target="_blank" rel="noopener">Google AI Studio</a> (bạn đã có Google One AI Premium)</p>
+      </blockquote>
+
+      <h3 id="bai-1-cam-nhan-token">Bài 1: Cảm nhận Token (5 phút)</h3>
+
+      <p>Mở Google AI Studio, gõ lần lượt 2 prompt sau và quan sát <strong>token count</strong>:</p>
+
+<pre><code>Prompt A (Tiếng Anh):
+"Explain what machine learning is in 3 sentences."
+
+Prompt B (Tiếng Việt):
+"Giải thích machine learning là gì trong 3 câu."</code></pre>
+
+      <p><strong>Quan sát:</strong></p>
+      <ul class="task-list">
+        <li class="task-item"><input type="checkbox" disabled> Prompt A dùng bao nhiêu token?</li>
+        <li class="task-item"><input type="checkbox" disabled> Prompt B dùng bao nhiêu token?</li>
+        <li class="task-item"><input type="checkbox" disabled> Tiếng Việt tốn nhiều hơn bao nhiêu %?</li>
+      </ul>
+
+      <hr>
+
+      <h3 id="bai-2-so-sanh-temperature">Bài 2: So sánh Temperature (5 phút)</h3>
+
+      <p>Trong AI Studio, hỏi CÙNG 1 câu nhưng thay đổi Temperature:</p>
+
+<pre><code>Prompt: "Đặt 3 tên hay cho quán cà phê phong cách retro ở Sài Gòn"
+
+Lần 1: Temperature = 0.1 → Ghi lại kết quả
+Lần 2: Temperature = 0.1 → So sánh với lần 1 (gần giống nhau?)
+Lần 3: Temperature = 1.0 → So sánh với lần 1-2 (khác biệt nhiều?)
+Lần 4: Temperature = 1.0 → So sánh với lần 3 (mỗi lần khác nhau?)</code></pre>
+
+      <p><strong>Quan sát:</strong></p>
+      <ul class="task-list">
+        <li class="task-item"><input type="checkbox" disabled> Temp 0.1: Hai lần gần giống nhau không?</li>
+        <li class="task-item"><input type="checkbox" disabled> Temp 1.0: Hai lần khác nhau thế nào?</li>
+        <li class="task-item"><input type="checkbox" disabled> Kết luận: Temperature ảnh hưởng gì?</li>
+      </ul>
+
+      <hr>
+
+      <h3 id="bai-3-prompt-engineering-battle">Bài 3: Prompt Engineering Battle (10 phút)</h3>
+
+      <p>So sánh prompt tệ vs prompt tốt:</p>
+
+<pre><code>❌ PROMPT TỆ:
+"Viết giới thiệu bản thân cho CV"
+
+✅ PROMPT TỐT (bạn tự viết!):
+[Áp dụng 5 kỹ thuật đã học:
+ 1. Role: Giao vai trò cho AI
+ 2. Few-shot: Cho 1 ví dụ mẫu
+ 3. Constraints: Giới hạn (số từ, giọng văn)
+ 4. Output format: Chỉ định format
+ 5. Context: Thêm thông tin về bạn]
+
+Gợi ý prompt tốt:
+"Bạn là chuyên gia viết CV cho ngành IT.
+ Viết phần giới thiệu bản thân cho junior developer,
+ biết JavaScript và đang học AI.
+ Giọng: tự tin nhưng không phô trương.
+ Dưới 100 từ. 3 câu.
+ Format: 1 đoạn văn liền mạch."</code></pre>
+
+      <p><strong>Quan sát:</strong></p>
+      <ul class="task-list">
+        <li class="task-item"><input type="checkbox" disabled> Kết quả prompt tệ vs tốt khác nhau thế nào?</li>
+        <li class="task-item"><input type="checkbox" disabled> Bạn có tự viết được prompt tốt không?</li>
+      </ul>
+
+      <hr>
+
+      <h3 id="bai-4-bat-qua-tang-hallucination">Bài 4: Bắt Quả Tang Hallucination (5 phút)</h3>
+
+<pre><code>Prompt: "Cho tôi 5 nghiên cứu khoa học về tác dụng của cà phê
+         đối với năng suất lập trình, kèm link paper và tác giả"</code></pre>
+
+      <p><strong>Kiểm tra:</strong></p>
+      <ul class="task-list">
+        <li class="task-item"><input type="checkbox" disabled> Mở Google, search tên paper AI đưa ra → có tồn tại không?</li>
+        <li class="task-item"><input type="checkbox" disabled> Link URL có mở được không?</li>
+        <li class="task-item"><input type="checkbox" disabled> Tên tác giả có thật không?</li>
+        <li class="task-item"><input type="checkbox" disabled> Bao nhiêu trong 5 kết quả là bịa?</li>
+      </ul>
+
+      <hr>
+
+      <h3 id="bai-5-tu-danh-gia">Bài 5: Tự Đánh Giá — Phân Loại "Đã Biết" vs "Chưa Biết" (5 phút)</h3>
+
+      <p>Đánh dấu trung thực vào bảng dưới:</p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Keyword</th><th>Đã hiểu?</th><th>Tự tin giải thích?</th><th>Ghi chú</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Context/Token</td><td>☐</td><td>☐</td><td></td></tr>
+            <tr><td>2</td><td>Token</td><td>☐</td><td>☐</td><td></td></tr>
+            <tr><td>3</td><td>Model</td><td>☐</td><td>☐</td><td></td></tr>
+            <tr><td>4</td><td>Hallucination</td><td>☐</td><td>☐</td><td></td></tr>
+            <tr><td>5</td><td>Prompt Engineering</td><td>☐</td><td>☐</td><td></td></tr>
+            <tr><td>6</td><td>Temperature</td><td>☐</td><td>☐</td><td></td></tr>
+            <tr><td>7</td><td>RAG</td><td>☐</td><td>☐</td><td></td></tr>
+            <tr><td>8</td><td>Memory</td><td>☐</td><td>☐</td><td></td></tr>
+            <tr><td>9</td><td>Knowledge Graph</td><td>☐</td><td>☐</td><td></td></tr>
+            <tr><td>10</td><td>Agent</td><td>☐</td><td>☐</td><td></td></tr>
+            <tr><td>11</td><td>MCP</td><td>☐</td><td>☐</td><td></td></tr>
+            <tr><td>12</td><td>PE vs RAG vs FT</td><td>☐</td><td>☐</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr>
+
+      <h2 id="ngay-0-checklist-hoan-thanh">✅ Ngày 0 — Checklist Hoàn Thành</h2>
+
+      <ul class="task-list">
+        <li class="task-item"><input type="checkbox" disabled> Đọc hiểu 12 keywords (bài này)</li>
+        <li class="task-item"><input type="checkbox" disabled> Vẽ/hiểu mindmap 3 nhóm: Nền tảng → Kỹ thuật → Hệ thống</li>
+        <li class="task-item"><input type="checkbox" disabled> Hoàn thành Bài 1: Cảm nhận Token</li>
+        <li class="task-item"><input type="checkbox" disabled> Hoàn thành Bài 2: So sánh Temperature</li>
+        <li class="task-item"><input type="checkbox" disabled> Hoàn thành Bài 3: Prompt Engineering Battle</li>
+        <li class="task-item"><input type="checkbox" disabled> Hoàn thành Bài 4: Bắt Quả Tang Hallucination</li>
+        <li class="task-item"><input type="checkbox" disabled> Hoàn thành Bài 5: Tự đánh giá 12 keywords</li>
+        <li class="task-item"><input type="checkbox" disabled> Ghi 3 điều quan trọng nhất hôm nay đã học</li>
+      </ul>
+
+      <hr>
+
+      <h2 id="ngay-mai">⏭️ Ngày Mai — Ngày 1: Context Window, Token &amp; Hallucination</h2>
+
+      <p>Ngày mai sẽ Deep Dive vào 3 keyword đầu tiên (Context, Token, Hallucination) với:</p>
+      <ul>
+        <li>Lý thuyết chi tiết + code demo tính token</li>
+        <li>Bài tập tối ưu prompt để giảm token</li>
+        <li>Lab thực hành: so sánh chi phí English vs Vietnamese prompt</li>
+      </ul>
+
+    </article>
+  </main>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
+  <script>
+    /* === THEME TOGGLE === */
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('md-render-theme') || 'dark';
+    html.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+    themeToggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('md-render-theme', next);
+      themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    });
+
+    /* === READING PROGRESS BAR === */
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = progress + '%';
+    });
+
+    /* === SCROLL TO TOP === */
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* === TOC ACTIVE STATE (Intersection Observer) === */
+    const tocLinks = document.querySelectorAll('.toc a');
+    const headings = [];
+    tocLinks.forEach(link => {
+      const id = link.getAttribute('href').substring(1);
+      const heading = document.getElementById(id);
+      if (heading) headings.push({ id, el: heading, link });
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const activeLink = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+          if (activeLink) activeLink.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-10% 0px -80% 0px' });
+
+    headings.forEach(h => observer.observe(h.el));
+
+    /* === TOC MOBILE TOGGLE === */
+    const tocToggle = document.getElementById('tocToggle');
+    const toc = document.getElementById('toc');
+    tocToggle.addEventListener('click', () => {
+      toc.classList.toggle('active');
+    });
+
+    /* Close TOC when clicking a link (mobile) */
+    tocLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 1100) {
+          toc.classList.remove('active');
+        }
+      });
+    });
+
+    /* Close TOC when clicking outside (mobile) */
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth < 1100 && !toc.contains(e.target) && e.target !== tocToggle) {
+        toc.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

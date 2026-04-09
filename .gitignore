@@ -78,3 +78,5 @@ frontend/out/
 frontend/.vercel
 **/.vercel
 
+.agent/
+

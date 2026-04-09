@@ -1,17 +1,16 @@
 {
-    "updated_at": "2026-04-06T08:13:00+07:00",
+    "updated_at": "2026-04-08T11:18:00+07:00",
     "working_on": {
         "feature": "Study: AI Application Engineer",
-        "task": "Study Plan v2 đã cập nhật — kết hợp nội dung anh Đức (CPP AI). Sẵn sàng tiếp tục từ Module 01, Ngày 0 (Warm-up 12 keywords)",
-        "status": "ready",
+        "task": "Ngày 0: Warm-up 12 Keywords AI — Bài giảng đã tạo, đang thực hành 5 bài tập tại Google AI Studio",
+        "status": "in_progress",
         "files": [
+            "docs/learn/day-00-warmup-12-keywords.md",
             "study-plans/260224-1536-ai-engineer/plan.md",
-            "study-plans/260224-1536-ai-engineer/module-01-llm-fundamentals.md",
-            "sources/duc-cppai.md",
-            "docs/01-llm-fundamentals/01-prompt-engineering.md"
+            "sources/duc-cppai.md"
         ],
         "blockers": [],
-        "notes": "Plan v2: 46 ngày (từ 42). Thêm 4 chủ đề từ anh Đức CPP AI: Context/Token, Hallucination, Knowledge Graph, MCP. Ngày 1 cũ → giữ nguyên tiến độ lý thuyết (Zero-shot, Few-shot, CoT, Role Prompting) nhưng đánh lại số ngày."
+        "notes": "Bài giảng Ngày 0 chi tiết: Mindmap 3 nhóm (Nền tảng/Kỹ thuật/Hệ thống), Deep Dive 12 keywords, 5 bài thực hành hands-on. User đang thực hành."
     },
     "study_context": {
         "plan_folder": "study-plans/260224-1536-ai-engineer",
@@ -51,6 +50,18 @@
         }
     ],
     "recent_changes": [
+        {
+            "timestamp": "2026-04-06T08:33:00+07:00",
+            "type": "docs_update",
+            "description": "Cập nhật README.md với Study Plan v2 và commit/push code",
+            "details": [
+                "Thêm section giới thiệu tài liệu bổ sung (anh Đức CPP AI)",
+                "Thêm section Study Plan chi tiết (46 ngày, 6 modules)",
+                "Cập nhật danh sách 5 stages (gộp Orchestration + Agents)",
+                "Đã git push lên repo gốc"
+            ],
+            "files": ["README.md"]
+        },
         {
             "timestamp": "2026-04-06T08:13:00+07:00",
             "type": "plan_update",
