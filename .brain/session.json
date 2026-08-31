@@ -1,16 +1,14 @@
 {
-    "updated_at": "2026-04-08T11:18:00+07:00",
+    "updated_at": "2026-04-09T10:41:00+07:00",
     "working_on": {
         "feature": "Study: AI Application Engineer",
-        "task": "Ngày 0: Warm-up 12 Keywords AI — Bài giảng đã tạo, đang thực hành 5 bài tập tại Google AI Studio",
+        "task": "Hoàn thành render HTML cho Ngày 0, sẵn sàng học lý thuyết chi tiết",
         "status": "in_progress",
         "files": [
-            "docs/learn/day-00-warmup-12-keywords.md",
-            "study-plans/260224-1536-ai-engineer/plan.md",
-            "sources/duc-cppai.md"
+            "docs/learn/day-00-warmup-12-keywords.html"
         ],
         "blockers": [],
-        "notes": "Bài giảng Ngày 0 chi tiết: Mindmap 3 nhóm (Nền tảng/Kỹ thuật/Hệ thống), Deep Dive 12 keywords, 5 bài thực hành hands-on. User đang thực hành."
+        "notes": "Đã tạo xong tool render để đọc bài giảng dễ dàng hơn. User đang xem kết quả render của Ngày 0."
     },
     "study_context": {
         "plan_folder": "study-plans/260224-1536-ai-engineer",
@@ -50,6 +48,17 @@
         }
     ],
     "recent_changes": [
+        {
+            "timestamp": "2026-04-09T10:41:00+07:00",
+            "type": "utility_update",
+            "description": "Tạo skill md-to-html và workflow /render để chuyển tài liệu markdown sang trang web HTML đọc cho đẹp",
+            "details": [
+                "Skill md-to-html: Hướng dẫn AI convert Markdown sang single-file HTML, giữ nguyên 100% nội dung gốc, có dark/light mode, mục lục, progress bar.",
+                "Workflow /render: Gõ /render <file> để chuyển file nhanh",
+                "Đạt thành quả ban đầu với file day-00-warmup-12-keywords.md, file html đã chạy ngon lành trên browser"
+            ],
+            "files": ["docs/learn/day-00-warmup-12-keywords.html", "C:/Users/Admin/.gemini/antigravity/skills/md-to-html/SKILL.md", "C:/Users/Admin/.gemini/antigravity/global_workflows/render.md"]
+        },
         {
             "timestamp": "2026-04-06T08:33:00+07:00",
             "type": "docs_update",
